@@ -1,0 +1,159 @@
+/* 
+4/03/18 Mlewis45 - Javascript functions to manipulate GameArea inner Html and make professors popup should be added. Debating addition of several subdivs inside the GameArea - each one holding a desk and professor. Also having trouble centering the StartGame button at the bottom of the HelpArea if anyone can offer tips or a solution Thanks in advance.
+04/08/18 ItsThatJUN - added game area for the basic game. 
+*/
+
+html, body {
+    width: 100%;
+}
+
+#GameHeader {
+    text-align: center;
+    background-color: coral;
+    /*font-size: 50px;*/
+    
+}
+
+#GameFooter {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+#Container {
+    width: 100%;
+    border: solid black;
+    overflow: hidden;
+    text-align: center;
+    background-color: cadetblue;
+}
+
+#Container2 {
+    height: 100%;
+    width: 100%;
+    display: table;
+    margin-top: 25px;
+}
+
+/* The Three sub-boxes of the parent Container */
+
+/* Contains rules and Start button */
+#HelpArea {
+    width: calc((100% - 808px) / 2);
+    height: 600px;
+    text-align: center;
+    background-color: rosybrown;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* 800x600 Game area, Desks and Professors not added */
+#GameArea {
+    height: 600px;
+    width: 800px;
+    text-align: center;
+    /*border-radius: 40px;*/
+    background-image: url(Background2.jpg);
+    border: 2px solid yellow;
+
+    display: inline-block;
+    vertical-align: top; 
+    /* Keeps game area aligned at top of Container div */
+	
+}
+
+/* High Score Area (The Id is a misnomer) */
+#ButtonArea {
+    width: calc((100% - 808px) / 2); 
+    /* Calculates a value close to the remaining width and fills it with this sub box */
+    height: 600px;
+    text-align: center;
+    background-color: indianred;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/* Button to start game, JS to be added */
+#StartButton {
+    align-content: center;
+    text-align: center;
+    display: block;
+}
+
+#ScoreBox {
+    height: 300px;
+    width: 400px; 
+    margin: auto;
+    border: solid black;
+    display: table-cell;
+    text-align: center;
+}
+
+#Professors {
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    border: solid black;
+    display: table-cell;
+    text-align: center;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* main game area/display*/ 
+/*boardered added to show the area*/
+.game {
+  width:600px;
+  height:300px;
+  display:flex;
+  flex-wrap:wrap;
+  margin:200px auto;
+  border: 1px solid white;
+
+}
+
+/*divide the game area into sections of 6 desks*/
+/*boardered added to show the area*/
+.desk {
+  flex: 1 0 33.3%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid blue;
+
+}
+
+/*the desks image and style*/
+/*ardered added to show the area*/
+.desk:after {
+  display: block;
+  background: url(desk.png) bottom center no-repeat;
+  background-size:contain;
+  content:'';
+  width: 100%;
+  height:80px;
+  position: absolute;
+  z-index: 2;
+  bottom:-30px;
+}
+
+/*the prof image and style*/
+/*boardered added to show the area*/
+.prof {
+  background:url('professor1.png') bottom center no-repeat;
+  background-size:60%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition:all 0.4s;
+  border: 1px solid red;
+}
+
+/*use to change the status of the prof*/
+/*when added to the class list in js*/
+.desk.up .prof {
+  top:0;
+}

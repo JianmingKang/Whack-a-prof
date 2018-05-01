@@ -1,0 +1,168 @@
+﻿<!-- 4/03/18 Mlewis 45 - Slightly different rendition of Whack-A-Prof.txt; Will add comments shortly-->
+<!-- 04/07/18 ItsThatJUN- added traditonal game feature like mole pops up within time limite not requested spec -->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MainPageStyle.css">
+    <title>Whack A Prof!</title>
+</head>
+<body>
+    <header id="GameHeader">
+        <h1>Whack-A-Professor</h1>
+    </header>
+
+    <div id="Container">
+        <div id="HelpArea">
+            <h1>Rules</h1>
+            <ul>
+                <li>The objective is to whack as many professors as possible in 2 minutes.</li>
+            </ul>
+
+            <button onClick="startGame()">
+                StartGame
+            </button>
+        </div>
+
+        <div id="GameArea">
+            <div class="game">
+                <div class="desk 1">
+                    <div class="prof"></div>
+                </div>
+                <div class="desk 2">
+                    <div class="prof"></div>
+                </div>
+                <div class="desk 3">
+                    <div class="prof"></div>
+                </div>
+                <div class="desk 4">
+                    <div class="prof"></div>
+                </div>
+                <div class="desk 5">
+                    <div class="prof"></div>
+                </div>
+                <div class="desk 6">
+                    <div class="prof"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ButtonArea">
+            <h1>High Scores</h1>
+        </div>
+    </div>
+
+    <div id="Container2">
+        <div id="ScoreBox">
+            <h1>Score</h1>
+            <br>
+            <h1 id="CurrentScore"
+        <span class="score">0</span></h1>
+        </div>
+
+        <div id="Professors">
+            <h1>Remaining Professors</h1>
+        </div>
+    </div>
+
+    <footer id="GameFooter">
+        <h1>Group 2</h1>
+    </footer>
+
+    <audio id="audio" src="SoundEffect.wav"></audio>
+    <script>
+  const desks = document.querySelectorAll('.desk');
+  const scoreBoard = document.querySelector('.score');
+  const profs = document.querySelectorAll('.prof');
+  let lastdesk;
+  let timeUp = false;
+  let score = 0;
+
+  function myGame(){
+	intialGameBoard();  //call function for intial state of game to display all the professors on the screen
+	
+}
+
+function intialGameBoard(){} //function will make all the professors appear on the screen before they start hiding
+
+function gameOver(){} //function called after the 2 minutes are up
+//will display the player's score and the highest score for the entire game,
+// and other options after game ends
+
+function gameOverEarly(){} //function called before 2 minutes are up and all professors are whacked
+
+function addPoints(){} //function will add points when the player whacks a professor
+
+function subPoints(){} // function will subtract points when the player misses the chance to whack a professor
+
+function profMove(){} //function keeps track of the professors' movements 
+
+function profOnBoard(){} //function would calculate the number of professors left on the board 
+//only bringing up the professors that have not been whacked
+  
+  <!-- generate random time within min and max -->
+  function randomTime(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+
+	<!--gets random desk   -->
+	<!--  if random desk in same as previous desk-->
+	<!-- will generate a different desk using recusive  -->
+  function randomdesk(desks) {
+    const idx = Math.floor(Math.random() * desks.length);
+    const desk = desks[idx];
+    if (desk === lastdesk) {
+      return randomdesk(desks);
+    }
+    lastdesk = desk;
+    return desk;
+  }
+
+  <!-- gets random time and desks -->
+  <!-- professor pops up in the selected desk  -->
+  <!--  will continue to peep when time is not up-->
+  <!--  time is the amount of time each professor pops up-->
+  function peep() {
+    const time = randomTime(1000, 1500);
+    const desk = randomdesk(desks);
+    desk.classList.add('up');
+    setTimeout(() => {
+      desk.classList.remove('up');
+      if (!timeUp) peep();
+    }, time);
+  }
+
+  <!-- the start game function  reset score-->
+  <!-- calles peep method and will end the game -->
+  <!-- using setTimeOut method after the set game time -->
+  function startGame() {
+    scoreBoard.textContent = 0;
+    timeUp = false;
+    score = 0;
+    peep();
+    setTimeout(() => timeUp = true, 20000)
+  }
+	
+   <!-- plays sound when function called -->
+  function playSound(){
+       var audio = document.getElementById("audio");
+       audio.play();
+   }
+
+    <!-- when profoessor is clicked on will add scored -->
+    <!-- and remove the up status and sound played -->
+  function bonk(e) {
+    score++;
+	playSound();
+    this.parentNode.classList.remove('up');
+    scoreBoard.textContent = score;
+  }
+
+  <!-- event event listener for all the professor for clicking-->
+  <!--  once clicked ,call bonk method-->
+  profs.forEach(prof => prof.addEventListener('click', bonk));
+
+    </script>
+</body>
+</html>

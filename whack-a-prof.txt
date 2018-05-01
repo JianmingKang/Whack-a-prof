@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+<style type= "text/css">
+	h1, h3 {text-align:center;}
+</style>
+
+<body>
+<h1>Whack-A-Professor</h1>
+<h3><em>press</em> START<em> to begin..</em></h3>
+
+<! timer set for 2 minutes/120000 milliseconds so the player has 2 minutes to whack as many professors as they can>
+
+<button onclick="setTimeout(myGame, 120000);">Start Game</button>
+<script>
+function myGame(){
+	intialGameBoard();  //call function for intial state of game to display all the professors on the screen
+	
+}
+
+function intialGameBoard(){} //function will make all the professors appear on the screen before they start hiding
+
+function gameOver(){} //function called after the 2 minutes are up
+//will display the player's score and the highest score for the entire game,
+// and other options after game ends
+
+function gameOverEarly(){} //function called before 2 minutes are up and all professors are whacked
+
+function addPoints(){} //function will add points when the player whacks a professor
+
+function subPoints(){} // function will subtract points when the player misses the chance to whack a professor
+
+function profMove(){} //function keeps track of the professors' movements 
+
+function profOnBoard(){} //function would calculate the number of professors left on the board 
+//only bringing up the professors that have not been whacked
+
+</script>
+</body>
+</head>
+</html>
