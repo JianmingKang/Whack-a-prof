@@ -1,0 +1,172 @@
+/*
+4/03/18 Mlewis45 - Javascript functions to manipulate GameArea inner Html and make professors popup should be added. Debating addition of several subdivs inside the GameArea - each one holding a desk and professor. Also having trouble centering the StartGame button at the bottom of the HelpArea if anyone can offer tips or a solution Thanks in advance.
+04/08/18 ItsThatJUN - added game area for the basic game.
+/4/18/18 Mlewis45 - Adjusted the .game class selector to fix some of the scaling issues in browsers. Margin was changed to margin top: 200px in order to keep size consitent throughout div. The height was also reduced to 60% of the parent div (id = Container) so when the margin property was added, it would not cause overflow. (Overflow = hidden still caused wrapping to the next line).
+*/
+
+html, body {
+    width: 100%;
+}
+
+#GameHeader {
+    text-align: center;
+    background-color: coral;
+    /*font-size: 50px;*/
+
+}
+
+#GameFooter {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+#Container {
+    width: 100%;
+    height: 602px;
+    border: solid black;
+    overflow: hidden;
+    text-align: center;
+    background-color: cadetblue;
+}
+
+#Container2 {
+    height: 100%;
+    width: 100%;
+    display: table;
+    margin-top: 25px;
+}
+
+/* The Three sub-boxes of the parent Container */
+
+/* Contains rules and Start button */
+#HelpArea {
+    width: calc( (100% - 820px) / 2);
+    height: 100%;
+    text-align: center;
+    background-color: rosybrown;
+
+    margin: 0px;
+    overflow: hidden;
+    display: inline-block;
+    /* vertical-align: middle; */
+}
+
+/* 800x600 Game area, Desks and Professors not added */
+/*The Parent container has a height of 602px, allowing the game area a 2px height buffer. */
+#GameArea {
+    height: 100%;
+    width: 800px;
+    text-align: center;
+    background-image: url(Background2.jpg);
+    cursor: url(MalletSmallUnclick.png), auto;
+    /* border: 2px solid yellow; */
+
+    margin: auto;
+    overflow: hidden;
+    display: inline-block;
+
+    /* vertical-align: middle; */
+    /* Keeps game area aligned at top of Container div */
+
+}
+
+/* High Score Area (The Id is a misnomer) */
+#HighScoreArea {
+    width: calc( (100% - 820px) / 2);
+    /* Calculates a value close to the remaining width and fills it with this sub box */
+    height: 100%;
+    text-align: center;
+    background-color: indianred;
+
+    margin: 0px;
+    overflow: hidden;
+    display: inline-block;
+  /*vertical-align: middle; */
+}
+
+
+/* Button to start game, JS to be added */
+#StartButton {
+    align-content: center;
+    text-align: center;
+    display: block;
+}
+
+#ScoreBox {
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    border: solid black;
+    display: table-cell;
+    text-align: center;
+}
+
+#Professors {
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    border: solid black;
+    display: table-cell;
+    text-align: center;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* main game area/display*/
+/*boardered added to show the area*/
+/*cursor will look like a mallet only in this area */
+.game {
+
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 200px;
+
+}
+
+/*divide the game area into sections of 6 desks*/
+/*boardered added to show the area*/
+.desk {
+  flex: 1 0 33.3%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid blue;
+
+}
+
+/*the desks image and style*/
+/*Border added to show the area*/
+.desk:after {
+  display: block;
+  background: url(desk.png) bottom center no-repeat;
+  background-size: contain;
+  content:'';
+  width: 100%;
+  height: 90px;
+  position: absolute;
+  z-index: 2;
+  bottom: -30px;
+}
+
+/*the prof image and style*/
+/*Border added to show the area*/
+.prof {
+  background:url('professor1.png') bottom center no-repeat;
+  background-size: 60%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s;
+  border: 1px solid red;
+}
+
+/*use to change the status of the prof*/
+/*when added to the class list in js*/
+.desk.up .prof {
+  top:0;
+}

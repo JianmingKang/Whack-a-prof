@@ -1,0 +1,4 @@
+canvas {
+  /*MalletSmall.png for cursor is size 32x32*/
+    cursor: url(MalletSmallUnclick.png), default;
+  }
